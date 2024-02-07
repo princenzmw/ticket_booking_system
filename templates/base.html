@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}{% if title %}{{ title }} | {% endif %}Prinko Airways {%endblock %}
+    </title>
+    <script
+      src="https://kit.fontawesome.com/6e24aa161b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href=" {% static 'styles.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap"
+    />
+  </head>
+  <body>
+    <header>
+      <a href="{% url 'home' %}" class="mylogo">
+        <img
+          src=" {% static 'images/logo.png' %}"
+          alt="Company Logo"
+          class="logo"
+        />
+        <span class="company-name">Prinko Airways</span>
+      </a>
+      <div class="fast-contact">
+        <i class="fa-solid fa-phone" style="color: #068e0f"></i>
+        <div class="my-num">
+          <a href="tel:+250781712081">+250781712081</a>
+          <p>Speak to the travel expert</p>
+        </div>
+      </div>
+      <select name="Tickets" id="more-tickets">
+        <option value="Flights">✈️ Flights</option>
+        <option value="Trains">🚆 Trains</option>
+        <option value="Cars">🚗 Cars</option>
+        <option value="Hotels">🏨 Hotels</option>
+        <option value="Movies">🎦 Movies/Theatres</option>
+      </select>
+      <select name="Languages" id="chose-language">
+        <option value="English">🇬🇧 English</option>
+        <option value="French">🇫🇷 French</option>
+        <option value="Kinyarwanda">🇷🇼 Kinyarwanda</option>
+        <option value="Kiswahili">🇹🇿 Kiswahili</option>
+        <option value="Lingala">🇨🇩 Lingala</option>
+        <option value="Spanish">🇪🇸 Spanish</option>
+      </select>
+      <select name="Currency" id="chose-currency">
+        <option value="Euro">💹 Euro</option>
+        <option value="Dollars" selected>💲 Dollars</option>
+        <option value="Rwf">🪙 Rwandan francs</option>
+        <option value="Pounds">💱 Pounds</option>
+        <option value="Shillings">🤑 Shillings</option>
+      </select>
+
+      {% if user.is_authenticated %}
+      <div class="user-profhead">
+        <img
+          src="{% static 'images/me.jpg' %}"
+          alt="User Picture"
+          id="headpic"
+        />
+        <p>{{user.first_name}}</p>
+      </div>
+      <a href="{% url 'logout' %}" id="logout">Log Out</a>
+      <!-- <p class="advertisement">Prinko Airways ✈️🛩️, Book your dream Flight now!</p> -->
+      {% else %}
+      <a href="{% url 'login' %}" id="login">Log In</a>
+      <a href="{% url 'register' %}" id="signup">Sign Up</a>
+      <!-- <p class="advertisement">Please Login or Sign Up to see available tickets! ↗️⬆️</p> -->
+      {% endif %}
+    </header>
+    <main>{% block contents %} {% endblock contents %}</main>
+    <footer>
+      <div class="ftdvone">
+        <div class="dicountdiv">
+          <h4 class="firstdiscount">Be the first to hear about </h4>
+          <h4 class="ourdiscount">Our discounted flights</h4>
+          <h4 class="signdiscount">by Signing up for our news and Notifications.</h4>
+        </div>
+        <form action="" class="dicountfm">
+          <input required placeholder="Enter your email" type="email" class="form-control" id="notify-email" value="" name="notify_email">
+          <button type="submit" class="notify-btn">Submit</button>
+        </form>
+      </div>
+      <div class="ftdvtwo">
+        <div>
+          <h3 class="foot-title">Contacts:</h3>
+          <ul class="foot-list">
+            <li><a href="https://github.com/princenzmw" target="_blank"><i class="fa-brands fa-github"></i></a>Github</li>
+            <li><a href="https://twitter.com/princenzmw" target="_blank"><i class="fa-brands fa-twitter"></i></a>Twitter</li>
+            <li><a href="https://web.facebook.com/np.fudji/" target="_blank"><i class="fa-brands fa-facebook"></i></a>Facebook</li>
+            <li><a href="https://www.instagram.com/fudjiprinko146/" target="_blank"><i class="fa-brands fa-instagram"></i></a>Instagram</li>
+            <li><a href="https://www.linkedin.com/in/princenzmw/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>LinkedIn</li>
+            <li><a href="https://princenzmw.github.io/" target="_blank"><i class="fa-solid fa-blog"></i></a>Presonal Website</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="foot-title">Terms of Use</h3>
+          <ul class="foot-list">
+            <li>You shall not use the Website or Services for any illegal, immoral or inappropriate purposes.</li>
+            <li>You shall not abuse the Services or use the Services in violation of its instructions or recommendations.</li>
+            <li>You shall not engage in any activity that harms, exploits or threatens to harm us, any user, or the Website.</li>
+            <li>You shall not send unwanted or unsolicited messages or other spam.</li>
+            <li>You shall not engage in activity that is fraudulent, misleading, or defamatory.</li>
+            <li>You shall not perform or assist in any activity that is harmful to you, the Website, Services or others.</li>
+            <li>You shall not reverse engineer the Website, perform data (web) scraping of the Website, or hack the Website.</li>
+            <li>You may not use the Website in a way that may disable, damage, or interfere in the Website.</li>
+            <li>You shall not infringe anyone’s rights, including copyright and other intellectual property ones.</li>
+            <li>You shall not perform or assist in any activity that violates data protection or privacy rights of anyone.</li>
+            <li>You shall not assist anyone in breaking any of the rules of the Terms.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="foot-title">Privacy Policy</h3>
+          <ul class="foot-list">
+            <li>you browse any page of the Platform;</li>
+            <li>you subscribe to our newsletters/updates;</li>
+            <li>you communicate with us;</li>
+            <li>you use our services;</li>
+            <li>you receive notification from us;</li>
+            <li>we measure Platform’s traffic;</li>
+            <li>in cases which do not depend on you but we have a legal basis to collect such data.</li>
+          </ul>
+        </div>
+      </div>
+      <p>Copyright &copy; Prinko Airways : 2024</p>
+    </footer>
+    <script src="{% static 'main.js' %}"></script>
+  </body>
+</html>

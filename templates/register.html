@@ -1,0 +1,47 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block contents %}
+    <div class="regcontainer">
+      <form action="" method="post" id="regform">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="first_name"
+          id="regfstname"
+          placeholder="FIRST NAME"
+        />
+        <input
+          type="text"
+          name="last_name"
+          id="reglstname"
+          placeholder="LAST NAME"
+        />
+        <input
+          type="text"
+          name="username"
+          id="regusrname"
+          placeholder="USERNAME"
+        />
+        <input type="email" name="email" id="regmail" placeholder="EMAIL" />
+        <input
+          type="password"
+          name="password1"
+          id="regpass"
+          placeholder="PASSWORD"
+        />
+        <input
+          type="password"
+          name="password2"
+          id="regpass"
+          placeholder="COMFIRM PASSWORD"
+        />
+        <input type="submit" id="regbtn" />
+      </form>
+      <div id="regerror">
+        {% for message in messages%}
+        <h3>⚠️ {{message}} ⚠️</h3>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock contents %}

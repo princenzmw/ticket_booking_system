@@ -1,0 +1,39 @@
+<div class="bookingcont">
+    <div class="bookdiv">
+        <div class="updiv">
+            <label for="triptypes" class="trips-label">Trip Type: </label>
+            <input type="radio" name="trip_type" id="roundtrip">
+            <label for="roundtrip">Round Trip</label>
+            <input type="radio" name="trip_type" id="onetrip">
+            <label for="onetrip">One Way</label>
+            <input type="radio" name="trip_type" id="multitrip">
+            <label for="multitrip">Multi City</label>
+            <div id="triplevel">
+                <label for="tripslct" class="trips-label">Trip Level: </label>
+                <select name="triplevel" id="tripslct">
+                    <option value="Personal">Personal</option>
+                    <option value="Education">Education</option>
+                    <option value="Premium">Premium Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="First">Fist Class</option>
+                </select>
+            </div>
+        </div>
+        <div class="centdiv">
+            <input type="text" name="trip_source" id="from-where" placeholder="FROM WHERE?">
+            <div id="flip-icon"><i class="fa-solid fa-repeat"></i></div>
+            <input type="text" name="trip_destination" id="to-where" placeholder="DESTINATION">
+            <input type="datetime-local" name="depart_date" id="depart-date" placeholder="DEPART DATE">
+            <input type="datetime-local" name="return_date" id="return-date" placeholder="RETURN DATE">
+            <input type="number" name="traveler_num" id="traveler" placeholder="TRAVELER">
+            <input type="submit" value="Search Flight" id="searchflight">
+        </div>
+        <div class="bottomdiv">
+            <input type="search" name="searchdown" id="searchdown" placeholder="Search Flight">
+            <input type="checkbox" name="directcheck" id="directcheck">
+            <label for="directcheck">Save your info for later booking!</label>
+        </div>
+        <p id="booking-done">Hello, {{user.username}}! please search for your trip here.</p>
+    </div>
+</div>
+<span class="resultspan"></span>

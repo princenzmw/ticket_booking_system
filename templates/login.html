@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block contents %}
+    <div class="logcontainer">
+      <form action="" method="post" id="logform">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="username"
+          id="logusrname"
+          placeholder="USERNAME"
+        />
+        <input
+          type="password"
+          name="password"
+          id="logpass"
+          placeholder="PASSWORD"
+        />
+        <input type="submit" id="logbtn" />
+      </form>
+      <div id="logerror">
+        {% for message in messages%}
+        <h3>{{message}}</h3>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock contents %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block contents %}
+<div class="intro">
+  <div class="background"></div>
+  <div class="into-content">
+    <div class="description">
+      <h1><span id="salute">Hello! Welcome to</span> <em>Prinko Airways</em></h1>
+      <p class="resultpage">
+        Now, booking your ticket is easy. plan all your travels at home
+without even moving from your room. Everything is at your fingertips.
+      </p>
+    </div>
+    <div class="home-image">
+      <img
+        src="{% static 'images/computer1.png' %}"
+        alt="computer map"
+        class="laptop-pic"
+      />
+    </div>
+  </div>
+</div>
+{% if user.is_authenticated %}
+{% include 'booking.html' %}
+{% endif %}
+<div id="trip-deals" class="disabledclass">
+  <div class="trips">
+    {% for data in my_flights %}
+    <div class="trip">
+      <img src="{{ data.picture.url }}" alt="trip image" class="dest-image"/>
+      <div class="details">
+        <div class="fromdb">
+          <h3 class="city-text">{{ data.city }}</h3>
+          <p>
+            <span class="trip-info">{{ data.trip_type }}</span> |
+            <span class="dep-info">{{ data.departure }}</span> -
+            <span class="ret-info">{{ data.return_date }}</span>
+          </p>
+          <div class="last-data">
+            <h2>$ {{ data.price }}</h2>
+            <button type="button" class="book-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock contents %}

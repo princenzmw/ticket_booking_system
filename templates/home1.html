@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prinko Airways</title>
+    <script
+      src="https://kit.fontawesome.com/6e24aa161b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href=" {% static 'styles.css' %}" />
+  </head>
+  <body>
+    <header>
+      <a href="#" class="mylogo">
+        <img
+          src=" {% static 'images/logo.png' %}"
+          alt="Company Logo"
+          class="logo"
+        />
+        <span class="company-name">Prinko Airways</span>
+      </a>
+      <div class="fast-contact">
+        <i class="fa-solid fa-phone" style="color: #068e0f"></i>
+        <div class="my-num">
+          <a href="tel:+250781712081">+250781712081</a>
+          <p>Speak to the travel expert</p>
+        </div>
+      </div>
+      <select name="Tickets" id="more-tickets">
+        <option value="Flights">✈️ Flights</option>
+        <option value="Trains">🚆 Trains</option>
+        <option value="Cars">🚗 Cars</option>
+        <option value="Hotels">🏨 Hotels</option>
+        <option value="Movies">🎦 Movies/Theatres</option>
+      </select>
+      <select name="Languages" id="chose-language">
+        <option value="English">🇬🇧 English</option>
+        <option value="French">🇫🇷 French</option>
+        <option value="Kinyarwanda">🇷🇼 Kinyarwanda</option>
+        <option value="Kiswahili">🇹🇿 Kiswahili</option>
+        <option value="Lingala">🇨🇩 Lingala</option>
+      </select>
+      <select name="Currency" id="chose-currency">
+        <option value="Euro">💹 Euro</option>
+        <option value="Dollars" selected>💲 Dollars</option>
+        <option value="Rwf">🪙 Rwandan francs</option>
+        <option value="Pounds">💱 Pounds</option>
+        <option value="Shillings">🤑 Shillings</option>
+      </select>
+
+      {% if user.is_authenticated %}
+      <div class="user-profhead">
+        <img
+          src="{% static 'images/me.jpg' %}"
+          alt="User Picture"
+          id="headpic"
+        />
+        <p>{{user.first_name}}</p>
+      </div>
+      <a href="{% url 'logout' %}" id="logout">Log Out</a>
+      {% else %}
+      <a href="{% url 'login' %}" id="login">Log In</a>
+      <a href="{% url 'register' %}" id="signup">Sign Up</a>
+      {% endif %}
+    </header>
+    <main>
+      <div class="intro">
+        <div class="background"></div>
+        <div class="into-content">
+          <div class="description">
+            <h1>Hello! Welcome to <em>Prinko airways</em></h1>
+            <p>
+              Now, Booking your ticket made Easy. plan all your travels at home
+              without even moving from your room. Everything on your fingertips.
+            </p>
+          </div>
+          <div class="home-image">
+            <img
+              src="{% static 'images/computer1.png' %}"
+              alt="computer map"
+              class="laptop-pic"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="trip-deals">
+        <div class="trips">
+          {% for data in my_flights %}
+          <div class="trip">
+            <img src="{{ data.picture.url }}" alt="trip image" />
+            <div class="details">
+              <div class="fromdb">
+                <h5>{{ data.city }}</h5>
+                <p>
+                  <span>{{ data.trip_type }}</span> |
+                  <span>{{ data.departure }}</span> -
+                  <span>{{ data.return_date }}</span>
+                </p>
+                <h3>$ {{ data.price }}</h3>
+              </div>
+              <div class="book-btn">
+                <button type="button">Book Now</button>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>Copyright &copy; Prinko Airways : 2024</p>
+    </footer>
+  </body>
+</html>
